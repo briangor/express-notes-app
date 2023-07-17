@@ -40,10 +40,16 @@ export async function createNote(title, contents) {
     return getNote(id)
 }
 
-// const notes = await getNotes()
-// console.log(notes)
+export async function updateNote(id){}
 
-// const note = await getNote(1)
+export async function deleteNote(id){}
+
+export async function deleteNotes(){}
+
+//const notes = await getNotes()
+//console.log(notes)
+
+//const note = await getNote(1)
 // console.log(note)
 
 // const result = await createNote('test', 'test')
