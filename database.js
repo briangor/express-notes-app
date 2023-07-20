@@ -42,9 +42,20 @@ export async function createNote(title, contents) {
 
 export async function updateNote(id){}
 
-export async function deleteNote(id){}
+export async function deleteNote(id){
+    const [rows] = await pool.query(`
+    DELETE FROM notes
+    WHERE id = ?
+    `, [id])
+    return rows
+}
 
-export async function deleteNotes(){}
+export async function deleteNotes(){
+    const result = await pool.query(`
+    DELETE FROM notes
+    WHERE id = ?
+    `)
+}
 
 //const notes = await getNotes()
 //console.log(notes)
