@@ -30,6 +30,7 @@ app.post('/notes', async (req, res) => {
 })
 
 app.delete('/notes/:id', async (req, res) => {
+    // test
     const id = req.params.id
     const del_note = await deleteNote(id)
     res.send(del_note)
