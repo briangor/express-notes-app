@@ -1,11 +1,15 @@
 import express from 'express'
 
 // import db function 
-import { getNote, getNotes, createNote } from './database.js'
+import { getNote, getNotes, createNote, deleteNote } from './database.js'
 
 const app = express()
 
 app.use(express.json())
+
+app.get('/', (req, res) => {
+    res.send("server is up!")
+})
 
 app.get('/notes', async (req, res) => {
     //res.send("this should be the notes")
@@ -23,6 +27,12 @@ app.post('/notes', async (req, res) => {
     const { title, contents } = req.body // express grabs data from http
     const note = await createNote(title, contents)
     res.status(201).send(note)
+})
+
+app.delete('/notes/:id', async (req, res) => {
+    const id = req.params.id
+    const del_note = await deleteNote(id)
+    res.send(del_note)
 })
 
 app.use((err, req, res, next) => {
