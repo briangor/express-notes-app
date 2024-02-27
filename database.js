@@ -10,6 +10,7 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+// Get all notes
 export async function getNotes() {
     const [rows] = await pool.query("SELECT * FROM notes")
     return rows
@@ -40,10 +41,27 @@ export async function createNote(title, contents) {
     return getNote(id)
 }
 
-// const notes = await getNotes()
-// console.log(notes)
+export async function updateNote(id){}
 
-// const note = await getNote(1)
+export async function deleteNote(id){
+    const [rows] = await pool.query(`
+    DELETE FROM notes
+    WHERE id = ?
+    `, [id])
+    return rows
+}
+
+export async function deleteNotes(){
+    const result = await pool.query(`
+    DELETE FROM notes
+    WHERE id = ?
+    `)
+}
+
+//const notes = await getNotes()
+//console.log(notes)
+
+//const note = await getNote(1)
 // console.log(note)
 
 // const result = await createNote('test', 'test')
