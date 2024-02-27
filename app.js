@@ -1,11 +1,7 @@
 import express from 'express'
 
 // import db function 
-<<<<<<< HEAD
-import { getNote, getNotes, createNote } from './database.js'
-=======
 import { getNote, getNotes, createNote, deleteNote } from './database.js'
->>>>>>> 72ebb477848d0479435624d3353b3224f8069df5
 
 const app = express()
 
