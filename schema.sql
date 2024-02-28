@@ -1,5 +1,5 @@
-CREATE DATABASE notes_app;
-USE notes_app;
+CREATE DATABASE notesdb;
+USE notesdb;
 
 CREATE TABLE notes (
     id integer PRIMARY KEY AUTO_INCREMENT,
