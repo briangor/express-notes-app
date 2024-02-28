@@ -17,46 +17,60 @@ export async function getNotes() {
         return rows
     } catch (error) {
         console.log("error:", error.message);
-        return {"error" : error.message}
+        return { "error": error.message }
     }
 }
 
 export async function getNote(id) {
-    const [rows] = await pool.query(`
+    try {
+        const [rows] = await pool.query(`
     SELECT * 
     FROM notes
     WHERE id = ?
     `, [id])
-    return rows
+        return rows
+    } catch (error) {
+        console.log("error:", error.message);
+        return { "error": error.message }
+    }
 } // test with where id = ${id} and access with no authorization/
 
 export async function createNote(title, contents) {
-    const [result] =  await pool.query(`
+    try {
+        const [result] = await pool.query(`
     INSERT INTO notes (title, contents)
     VALUES (?, ?)
     `, [title, contents])
-    //return result.insertId
-    /* return {
-        id: result.insertId,
-        title,
-        content
-    } */
-    const id = result.insertId
-    return getNote(id)
+        const id = result.insertId
+        return getNote(id)
+    } catch (error) {
+        console.log("error:", error.message);
+        return { "error": error.message }
+    }
 }
 
-export async function updateNote(id){}
+export async function updateNote(id) { }
 
-export async function deleteNote(id){
-    const [rows] = await pool.query(`
+export async function deleteNote(id) {
+    try {
+        const [rows] = await pool.query(`
     DELETE FROM notes
     WHERE id = ?
     `, [id])
-    return rows
+        return rows
+    } catch (error) {
+        console.log("error:", error.message);
+        return { "error": error.message }
+    }
 }
 
-export async function deleteNotes(){
-    const result = await pool.query(`
+export async function deleteNotes() {
+    try {
+        const result = await pool.query(`
     DELETE FROM notes 
     `)
+    } catch (error) {
+        console.log("error:", error.message);
+        return { "error": error.message }
+    }
 }
