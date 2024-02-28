@@ -53,16 +53,6 @@ export async function deleteNote(id){
 
 export async function deleteNotes(){
     const result = await pool.query(`
-    DELETE FROM notes
-    WHERE id = ?
+    DELETE FROM notes 
     `)
 }
-
-//const notes = await getNotes()
-//console.log(notes)
-
-//const note = await getNote(1)
-// console.log(note)
-
-// const result = await createNote('test', 'test')
-// console.log(result)
