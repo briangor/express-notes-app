@@ -1,7 +1,7 @@
 import express from 'express'
 
 // import db function 
-import { getNote, getNotes, createNote, deleteNote } from './database.js'
+import { getNote, getNotes, createNote, deleteNote, deleteNotes } from './database.js'
 
 const app = express()
 
@@ -34,6 +34,11 @@ app.delete('/notes/:id', async (req, res) => {
     const id = req.params.id
     const del_note = await deleteNote(id)
     res.send(del_note)
+})
+
+app.delete('/notes', async (req, res) => {
+    const notes = await deleteNotes();
+    res.send(notes)
 })
 
 app.use((err, req, res, next) => {
