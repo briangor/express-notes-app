@@ -12,9 +12,13 @@ const pool = mysql.createPool({
 
 // Get all notes
 export async function getNotes() {
-    const [rows] = await pool.query("SELECT * FROM notes")
-    return rows
-
+    try {
+        const [rows] = await pool.query("SELECT * FROM notes")
+        return rows
+    } catch (error) {
+        console.log("error:", error.message);
+        return {"error" : error.message}
+    }
 }
 
 export async function getNote(id) {
